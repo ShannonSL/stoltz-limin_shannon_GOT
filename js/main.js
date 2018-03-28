@@ -10,15 +10,18 @@ const sigils = document.querySelectorAll('.sigilContainer'),
       lightbox = document.querySelector('.lightbox'),
       closeLightbox = document.querySelector('.close-lightbox'),
       vidPlayer = document.querySelector('video'),
-      playPause = document.querySelector('.play-paise'),
+      changeMe = document.querySelector('#changeMe'),
+      videoTitle = document.querySelector('#videoTitle'),
+      playPause = document.querySelector('.play-pause'),
       ffWd = document.querySelector('.forward'),
-      rWnd = document.querySelector('.rewind');
+      rWnd = document.querySelector('.rewind'),
+      imageBanner = document.querySelector('#houseImages');
 
 //methods / functions in the middle
 function loadMovie(){
   //debugger;
   // 1.turn on the lightbox
-  lightbox.classList.add('show-lightbox');
+lightbox.classList.add('show-lightbox');
 
 // 2. grab the right video based on the class name -> the split yields the name
   var house = this.className.split(' ')[1].capIt();
@@ -26,8 +29,20 @@ function loadMovie(){
   // 3. put the path together and make the video load and play
   vidPlayer.src =`video/House-${house}.${vidPlayer.currentSrc.split('.')[1]}`;
 
+changeMe.textContent=house;
+videoTitle.textContent=house;
   vidPlayer.load();
   vidPlayer.play();
+
+  animateBanners(this.dataset.offset);
+}
+
+function animateBanners(offset){
+  console.log(600 * offset); // this should give us the value that we need!
+
+// animate the banners across the screen
+//600 is the width of each image -> the sum / product is how much it needs to move
+  imageBanner.style.right = (offset * 600) + "px";
 }
 
 function closeLBox(){
@@ -51,12 +66,10 @@ function togglePlay(){
 }
 
 function ffWdVid () {
-  debugger;
   //look at adjust playback rate => MDN using video
 }
 
 function rWindVid () {
-  debugger;
   //look at adjust playback rate => MDN using video
 }
 
