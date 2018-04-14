@@ -15,7 +15,9 @@ const sigils = document.querySelectorAll('.sigilContainer'),
       playPause = document.querySelector('.play-pause'),
       ffWd = document.querySelector('.forward'),
       rWnd = document.querySelector('.rewind'),
-      imageBanner = document.querySelector('#houseImages');
+      imageBanner = document.querySelector('#houseImages'),
+      houseInfo = document.querySelector('.houseInfo');
+
 
 //methods / functions in the middle
 function loadMovie(){
@@ -25,11 +27,13 @@ lightbox.classList.add('show-lightbox');
 
 // 2. grab the right video based on the class name -> the split yields the name
   var house = this.className.split(' ')[1].capIt();
+  var houseHistory = this.className.split(' ')[1].capIt();
 
   // 3. put the path together and make the video load and play
   vidPlayer.src =`video/House-${house}.${vidPlayer.currentSrc.split('.')[1]}`;
 
 changeMe.textContent=house;
+houseInfo.textContent=houseHistory;
 videoTitle.textContent=house;
   vidPlayer.load();
   vidPlayer.play();
